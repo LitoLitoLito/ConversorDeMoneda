@@ -17,7 +17,7 @@ Este proyecto es una aplicación en Java que permite convertir monedas entre var
 3. Si estás usando un IDE como IntelliJ o Eclipse, importa el proyecto como un proyecto de Java.
 4. Agrega la dependencia de Gson en tu entorno: 
 Si estás usando Maven, agrega lo siguiente en el archivo pom.xml:
-![img.png](img.png)
+![img.png](Conversor/img.png)
 Si no estás usando Maven, puedes descargar la librería desde Gson e incluirla manualmente.
 
 ## Configuración de la API
@@ -28,12 +28,13 @@ URI direccion = URI.create("https://v6.exchangerate-api.com/v6/TU_CLAVE_DE_API/p
 ## Uso
 1. Ejecuta el proyecto desde tu IDE o terminal.
 2. El programa mostrará un menú con las opciones de conversión de moneda:
-![img_1.png](img_1.png)
+![img_1.png](Conversor/img_1.png)
 3. Elige la opción correspondiente para realizar la conversión. 
 El programa te mostrará la tasa de conversión actual.
 4. Luego, ingresa la cantidad de dinero que deseas convertir.
 5. Te mostrará lo algo como esto:
-![img_2.png](img_2.png)
+   
+![img_2.png](Conversor/img_2.png)
 
 ## Explicación del código
 ### Clase App
