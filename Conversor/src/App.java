@@ -1,14 +1,13 @@
-import java.util.Scanner;  // Importa la clase Scanner, que permite leer la entrada del usuario desde la consola.
+import java.util.Scanner;
 
-public class App {  // Declaración de la clase principal "App".
-    public static void main(String[] args) {  // Método principal que ejecuta el programa.
-        Scanner teclado = new Scanner(System.in);  // Crea un objeto Scanner llamado "teclado" para recibir entradas del usuario.
-        ConsultarMoneda consulta = new ConsultarMoneda();  // Crea un objeto "consulta" de la clase ConsultarMoneda (se asume que esta clase consulta datos de monedas).
-        int elegirOpcion = 0;  // Variable entera para almacenar la opción elegida por el usuario.
+public class App {
 
-        // Bucle while que se repite hasta que el usuario elija la opción 7 (Salir).
-        while (elegirOpcion != 7) {
-            // Muestra el menú de opciones en la consola.
+    public static void main(String[] args) {
+        Scanner teclado = new Scanner(System.in);
+        ConsultarMoneda consulta = new ConsultarMoneda(); // Inicializa la clase para consultar la API
+        Historial historial = new Historial(); // Inicializa el historial de conversiones
+        int opcion = 0;
+        do {
             System.out.println("*******************************************************");
             System.out.println("*                CONVERSOR DE MONEDA                  *");
             System.out.println("*******************************************************");
@@ -19,59 +18,48 @@ public class App {  // Declaración de la clase principal "App".
             System.out.println("* (4) Real Brasileño        ---> Dólar Estadounidense *");
             System.out.println("* (5) Dólar Estadounidense  ---> Peso Colombiano      *");
             System.out.println("* (6) Peso Colombiano       ---> Dólar Estadounidense *");
-            System.out.println("* (7) Salir                                           *");
+            System.out.println("* (7) Ver historial de conversiones                   *");
+            System.out.println("* (8) Salir                                           *");
             System.out.println("*                                                     *");
             System.out.println("*******************************************************");
+            System.out.print("Seleccione una opción: ");
 
-            // Pide al usuario que ingrese una opción válida.
-            System.out.print("Elija una opción válida ---> ");
+            opcion = Integer.parseInt(teclado.nextLine());
 
-            elegirOpcion = teclado.nextInt();  // Lee la opción elegida por el usuario como un número entero.
-            teclado.nextLine();  // Consume el salto de línea después de ingresar el número (para evitar problemas al leer más entradas después).
-
-            // Estructura switch para ejecutar diferentes acciones según la opción elegida por el usuario.
-            switch (elegirOpcion) {
+            switch (opcion) {
                 case 1:
-                    // Llama al método convertir para convertir de Dólar a Peso Argentino.
                     ConvertirMoneda.convertir("USD", "ARS", consulta, teclado,
-                            " (Estadounidense)", " (Argentinos)");
+                            " (Dólares)", " (Argentinos)", historial);
                     break;
                 case 2:
-                    // Llama al método convertir para convertir de Peso Argentino a Dólar.
                     ConvertirMoneda.convertir("ARS", "USD", consulta, teclado,
-                            " (Argentinos)", " (Dólar)");
+                            " (Argentinos)", " (Dólares)", historial);
                     break;
                 case 3:
-                    // Llama al método convertir para convertir de Dólar a Real Brasileño.
                     ConvertirMoneda.convertir("USD", "BRL", consulta, teclado,
-                            " (Dólar)", " (Brasileño)");
+                            " (Dólares)", " (Reales)", historial);
                     break;
                 case 4:
-                    // Llama al método convertir para convertir de Real Brasileño a Dólar.
                     ConvertirMoneda.convertir("BRL", "USD", consulta, teclado,
-                            " (Brasileño)", " (Dólar)");
+                            " (Reales)", " (Dólares)", historial);
                     break;
                 case 5:
-                    // Llama al método convertir para convertir de Dólar a Peso Colombiano.
                     ConvertirMoneda.convertir("USD", "COP", consulta, teclado,
-                            " (Dólar)", " (Colombiano)");
+                            " (Dólares)", " (Colombianos)", historial);
                     break;
                 case 6:
-                    // Llama al método convertir para convertir de Peso Colombiano a Dólar.
                     ConvertirMoneda.convertir("COP", "USD", consulta, teclado,
-                            " (Colombiano)", " (Dólar)");
+                            " (Colombianos)", " (Dólares)", historial);
                     break;
                 case 7:
-                    // Si el usuario elige la opción 7, finaliza el programa.
-                    System.out.println("Finalizando...");
-                    System.out.println("Finalizando...");
-                    System.out.println("Finalizando...");
+                    historial.mostrarHistorial();
+                    break;
+                case 8:
+                    System.out.println("Gracias por utilizar el conversor de monedas.");
                     break;
                 default:
-                    // Si el usuario ingresa una opción no válida, muestra un mensaje de error.
-                    System.out.println("Opción NO VÁLIDA");
-                    break;
+                    System.out.println("Opción no válida, intente nuevamente.");
             }
-        }
+        } while (opcion != 8);
     }
 }
